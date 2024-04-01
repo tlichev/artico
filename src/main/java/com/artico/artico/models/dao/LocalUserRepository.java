@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface LocalUserDAO extends CrudRepository<LocalUser,Long > {
+public interface LocalUserRepository extends CrudRepository<LocalUser,Long > {
 
     Optional<LocalUser> findByUsernameIgnoreCase(String username);
 

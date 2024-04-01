@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Remixicon CSS -->
+    <link rel="stylesheet" href="assets/fonts/remixicon.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Meanmenu CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- Theme Dark CSS -->
+    <link rel="stylesheet" href="assets/css/theme-dark.css">
+
+    <!-- Title -->
+    <title>Tezor - NFT Marketplace HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader">
+    <div class="spinner">
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+<div th:replace="~{fragments/header::header}"></div>
+
+<!-- Modal Start -->
+<div class="modal fade fade-scale searchmodal" id="searchmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-search-form">
+                    <input type="search" class="search-field" placeholder="Search...">
+                    <button type="submit"><i class="ri-search-line"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal End -->
+
+<!-- Start Error -->
+<div class="error-area ptb-100">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="error-content">
+                <h1>5 <span>0</span> 0</h1>
+                <h3>Oops! Internal Server Error</h3>
+                <p th:text="${errorMessage}"></p>
+                <a th:href="@{/}" class="default-btn">
+                    Return To Home Page
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Error -->
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!-- Jquery Min JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Bootstrap Bundle Min JS -->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<!-- Magnific Popup JS -->
+<script src="assets/js/magnific-popup.min.js"></script>
+<!-- Meanmenu JS -->
+<script src="assets/js/meanmenu.min.js"></script>
+<!-- Owl Carousel JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Countdown JS -->
+<script src="assets/js/countdown.min.js"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="assets/js/ajaxchimp.min.js"></script>
+<!-- Form Validator Min JS -->
+<script src="assets/js/form-validator.min.js"></script>
+<!-- Contact Form JS -->
+<script src="assets/js/contact-form-script.js"></script>
+<!-- Custom Form JS -->
+<script src="assets/js/custom.js"></script>
+</body>
+</html>

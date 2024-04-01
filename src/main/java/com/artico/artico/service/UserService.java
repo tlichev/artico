@@ -1,36 +1,26 @@
 package com.artico.artico.service;
 
-import com.artico.artico.api.exeption.UserAlreadyExistsException;
-import com.artico.artico.api.model.LoginBody;
-import com.artico.artico.api.model.RegistrationBody;
+import com.artico.artico.exeption.UserAlreadyExistsException;
+import com.artico.artico.model.RegistrationBody;
 import com.artico.artico.models.LocalUser;
-import com.artico.artico.models.dao.LocalUserDAO;
-import jakarta.validation.Valid;
-import jakarta.validation.Validator;
+import com.artico.artico.models.dao.LocalUserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
-public class UserService {
-    private LocalUserDAO localUserDAO;
-    private Validator validator;
-    private EncryptionService encryptionService;
-
-    private JWTService jwtService;
-
-    public UserService(LocalUserDAO localUserDAO, EncryptionService encryptionService, JWTService jwtService) {
-        this.localUserDAO = localUserDAO;
-        this.encryptionService = encryptionService;
-        this.jwtService = jwtService;
-    }
-
-
-
+@RequiredArgsConstructor
+public class UserService implements UserDetailsService {
+    private final LocalUserRepository localUserRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public LocalUser registerUser(RegistrationBody registrationBody) throws UserAlreadyExistsException {
-        if (localUserDAO.findByEmailIgnoreCase(registrationBody.getEmail()).isPresent()
-            || localUserDAO.findByUsernameIgnoreCase(registrationBody.getUsername()).isPresent()){
+        if (localUserRepository.findByEmailIgnoreCase(registrationBody.getEmail()).isPresent()
+                || localUserRepository.findByUsernameIgnoreCase(registrationBody.getUsername()).isPresent()) {
             throw new UserAlreadyExistsException();
         }
         LocalUser user = new LocalUser();
@@ -39,25 +29,14 @@ public class UserService {
         user.setLastName(registrationBody.getLastName());
         user.setUsername(registrationBody.getUsername());
 
-//        Encrypt Password
-        user.setPassword(encryptionService.encryptPassword(registrationBody.getPassword()));
+        user.setPassword(passwordEncoder.encode(registrationBody.getPassword()));
 
-
-        user = localUserDAO.save(user);
-
-        return user;
-
+        return localUserRepository.save(user);
     }
 
-    public String loginUser(LoginBody loginBody){
-        Optional<LocalUser> opUser = localUserDAO.findByUsernameIgnoreCase(loginBody.getUsername());
-        if (opUser.isPresent()) {
-            LocalUser user = opUser.get();
-            if (EncryptionService.verifyPassword(loginBody.getPassword(), user.getPassword())) {
-                return jwtService.generateJWT(user);
-            }
-
-        }
-        return null;
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return new CustomUserDetails(localUserRepository.findByUsernameIgnoreCase(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found")));
     }
 }
