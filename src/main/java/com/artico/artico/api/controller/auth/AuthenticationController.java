@@ -27,7 +27,6 @@ public class AuthenticationController {
 
 
     @PostMapping("/register")
-
     public ResponseEntity registerUser(@Valid @RequestBody RegistrationBody registrationBody){
         try {
             userService.registerUser(registrationBody);
