@@ -1,4 +1,4 @@
-package com.artico.artico.api.security;
+package com.artico.artico.security;
 
 import com.artico.artico.models.LocalUser;
 import com.artico.artico.models.dao.LocalUserDAO;

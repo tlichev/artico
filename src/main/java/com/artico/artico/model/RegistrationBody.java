@@ -1,4 +1,4 @@
-package com.artico.artico.api.model;
+package com.artico.artico.model;
 
 import jakarta.validation.constraints.*;
 

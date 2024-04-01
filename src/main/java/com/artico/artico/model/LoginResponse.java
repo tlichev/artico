@@ -1,4 +1,4 @@
-package com.artico.artico.api.model;
+package com.artico.artico.model;
 
 public class LoginResponse {
     private String jwt;

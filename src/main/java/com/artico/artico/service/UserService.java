@@ -1,11 +1,10 @@
 package com.artico.artico.service;
 
-import com.artico.artico.api.exeption.UserAlreadyExistsException;
-import com.artico.artico.api.model.LoginBody;
-import com.artico.artico.api.model.RegistrationBody;
+import com.artico.artico.exeption.UserAlreadyExistsException;
+import com.artico.artico.model.LoginBody;
+import com.artico.artico.model.RegistrationBody;
 import com.artico.artico.models.LocalUser;
 import com.artico.artico.models.dao.LocalUserDAO;
-import jakarta.validation.Valid;
 import jakarta.validation.Validator;
 import org.springframework.stereotype.Service;
 
