@@ -28,4 +28,9 @@ public class HomeController {
     public String show404() {
         return "404";
     }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
 }
