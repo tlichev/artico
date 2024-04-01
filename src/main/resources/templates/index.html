@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zxx">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
     <head>
         <!-- Required Meta Tags -->
         <meta charset="UTF-8">
@@ -383,8 +383,8 @@
                                 Accumsan sit consequat, sodales consectetur. Egestas scelerisque ut dui sed nulla morbi quam eget luctus. In a vel morbi sed nisi.
                             </p>
                             <div class="banner-btn">
-                                <a href="../../../../../../themeforest-PGfZtMqt-tezor-nft-marketplace-html-template/tezor-nft-marketplace-html-template/tezor/about.html" class="default-btn border-radius-5">Creator</a>
-                                <a href="../../../../../../themeforest-PGfZtMqt-tezor-nft-marketplace-html-template/tezor-nft-marketplace-html-template/tezor/add-wallet.html" class="default-btn two border-radius-5">Client</a>
+                                <a th:href="@{/create(type='CREATOR')}" class="default-btn border-radius-5">Creator</a>
+                                <a th:href="@{/create(type='CLIENT')}" class="default-btn two border-radius-5">Client</a>
                             </div>
                         </div>
                     </div>

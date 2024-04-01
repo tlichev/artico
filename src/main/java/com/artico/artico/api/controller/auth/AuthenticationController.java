@@ -12,11 +12,12 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/auth")
-
 public class AuthenticationController {
 
     private UserService userService;
@@ -27,17 +28,15 @@ public class AuthenticationController {
 
 
     @PostMapping("/register")
-
-    public ResponseEntity registerUser(@Valid @RequestBody RegistrationBody registrationBody){
+    public String registerUser( RegistrationBody registrationBody, Model model){
         try {
             userService.registerUser(registrationBody);
             System.out.println(registrationBody.getFirstName() + " " + registrationBody.getLastName() + " register");
-            return  ResponseEntity.ok().build();
+            return "redirect:/";
         } catch (UserAlreadyExistsException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/create";
         }
-
-
     }
 
 
