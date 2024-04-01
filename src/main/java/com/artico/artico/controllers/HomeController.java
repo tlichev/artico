@@ -15,15 +15,6 @@ public class HomeController {
         return "index";
     }
 
-//    todo remove
-//    @GetMapping("/create")
-//    public String createPage(Model model, @RequestParam(defaultValue = "client") UserRole type) {
-//        // client, creator
-//        model.addAttribute("type", type);
-//        model.addAttribute("registrationBody", new RegistrationBody());
-//        return "create";
-//    }
-
     @GetMapping("/404")
     public String show404() {
         return "404";
