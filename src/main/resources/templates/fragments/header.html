@@ -324,13 +324,16 @@
             </div>
         </div>
     </div>
+    <form sec:authorize="isAuthenticated()" name="logoutForm" th:action="@{/logout}" method="post" hidden>
+        <input hidden type="submit" value="Sign Out"/>
+    </form>
 </div>
 
 <ul class="optional-item-list" th:fragment="action">
-    <li th:if="${principal != null}">
-        <a th:href="@{/login}">Log out</a>
+    <li sec:authorize="isAuthenticated()">
+        <a href="javascript: document.logoutForm.submit()">Logout</a>
     </li>
-    <li th:if="${principal == null}">
+    <li sec:authorize="!isAuthenticated()">
         <a th:href="@{/login}">Login</a>
     </li>
 </ul>

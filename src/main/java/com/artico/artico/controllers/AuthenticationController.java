@@ -34,7 +34,7 @@ public class AuthenticationController {
             return "redirect:/";
         } catch (UserAlreadyExistsException e) {
             model.addAttribute("error", e.getMessage());
-            return "redirect:/create";
+            return "redirect:/register";
         }
     }
 
@@ -44,30 +44,8 @@ public class AuthenticationController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponse> loginUser(@Valid @RequestBody LoginBody loginBody) {
-        String jwt = userService.loginUser(loginBody);
-        if (jwt == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-
-        } else {
-            LoginResponse response = new LoginResponse();
-            response.setJwt(jwt);
-            System.out.println("user logged !!!");
-            return ResponseEntity.ok(response);
-
-        }
-
-    }
-
-    @GetMapping("/author-profile")
-    public String showAuthorProfile() {
-        return "author-profile";
-
-    }
-
-    @GetMapping("/author")
-    public LocalUser getLoginUserProfile(@AuthenticationPrincipal LocalUser user) {
-        return user;
+    @PostMapping("/login/success")
+    public String successfulLogin() {
+        return "redirect:/";
     }
 }
