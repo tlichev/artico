@@ -29,4 +29,10 @@ public class Product {
     @OneToOne(mappedBy = "product", cascade = CascadeType.REMOVE, optional = false, orphanRemoval = true)
     private Inventory inventory;
 
+    @Column(name = "image_path", unique = true)
+    private String imagePath;
+
+    @Column(name = "author_name", nullable = false, length = 50)
+    private String authorName;
+
 }
